@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typeoff v2.0 - Aprendizagem Comparativa de Programação</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header sticky -->
+  <header>
+    <div class="header-container">
+      <div class="logo-area">
+        <span class="logo-badge">V2.0</span>
+        <span class="logo-title">Typeoff</span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-theme" id="btn-theme">
+          🌙 <span id="theme-text">Modo Escuro</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navegação de Unidades (D3 - Otimizado para 375px) -->
+  <nav class="units-nav">
+    <button class="unit-tab active" onclick="renderUnidade(1)">Unidade 1: Variáveis</button>
+    <button class="unit-tab" onclick="renderUnidade(2)">Unidade 2: Condicionais</button>
+    <button class="unit-tab locked" title="Conclua a Unidade 2 para desbloquear">Unidade 3: Repetição 🔒</button>
+    <button class="unit-tab locked" title="Conclua a Unidade 3 para desbloquear">Unidade 4: Funções 🔒</button>
+    <button class="unit-tab locked" title="Conclua a Unidade 4 para desbloquear">Unidade 5: Vetores 🔒</button>
+  </nav>
+
+  <!-- Conteúdo Principal -->
+  <main class="main-container">
+    
+    <!-- Cabeçalho da Unidade -->
+    <section>
+      <h1 id="unit-title" style="font-size: 1.6rem; color: var(--primary);">Unidade 1</h1>
+      <p id="unit-desc" style="color: var(--text-secondary); margin-top: 0.25rem;">Descrição da unidade...</p>
+    </section>
+
+    <!-- Grid de Comparação Lado a Lado (D2: "O que observar" ao lado do código) -->
+    <div class="comparison-grid">
+      
+      <!-- Coluna da Esquerda: Código e Abas de Linguagem (D1: Highlight Sintático) -->
+      <div>
+        <div class="lang-tabs">
+          <button class="lang-btn active" data-lang="python" onclick="setLinguagem('python')">🐍 Python</button>
+          <button class="lang-btn" data-lang="java" onclick="setLinguagem('java')">☕ Java</button>
+          <button class="lang-btn" data-lang="c" onclick="setLinguagem('c')">⚡ C</button>
+        </div>
+
+        <pre class="code-box" id="code-display">
+          <!-- O código com realce sintático é inserido via JS -->
+        </pre>
+      </div>
+
+      <!-- Coluna da Direita: Caixa "O que observar" (D2 Fix) -->
+      <aside class="observation-box">
+        <div class="observation-title">
+          💡 O que observar
+        </div>
+        <ul class="observation-list" id="observation-list">
+          <!-- Lista de observações inserida via JS -->
+        </ul>
+      </aside>
+
+    </div>
+
+    <!-- Seção de Quiz Interativo -->
+    <section class="quiz-section">
+      <h2 style="font-size: 1.2rem;">📝 Verificação de Aprendizagem</h2>
+      <div class="question-card">
+        <p id="quiz-question" style="font-weight: 600; margin-top: 0.5rem;"></p>
+        <div class="options-group" id="quiz-options">
+          <!-- Botões de opção gerados via JS -->
+        </div>
+        <div id="quiz-feedback" class="feedback-msg"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

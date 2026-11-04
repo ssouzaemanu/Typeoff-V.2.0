@@ -1,0 +1,363 @@
+/* ==========================================================================
+   Typeoff V2 - Estilos Globais, Tema Claro/Escuro e Realce Sintático (D1, D2, D3)
+   ========================================================================== */
+
+:root {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: #e2e8f0;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --accent-bg: #eff6ff;
+  --success: #16a34a;
+  --warning: #d97706;
+  --error: #dc2626;
+  
+  /* Cores de Sintaxe (Tema Claro) */
+  --code-bg: #1e293b;
+  --code-text: #f8fafc;
+  --syn-kw: #f472b6;       /* Palavra-chave (ex: def, public, int) */
+  --syn-fn: #60a5fa;       /* Funções e Métodos */
+  --syn-str: #34d399;      /* Strings */
+  --syn-num: #fbbf24;      /* Números */
+  --syn-cm: #94a3b8;       /* Comentários */
+  --diff-highlight: #3b82f633; /* Destaque de diferença na sintaxe */
+}
+
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: #334155;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --accent-bg: #1e293b;
+  
+  --code-bg: #020617;
+  --code-text: #f1f5f9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header & Navegação */
+header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-badge {
+  background: var(--primary);
+  color: white;
+  font-weight: bold;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.logo-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-theme {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.btn-theme:hover {
+  background-color: var(--accent-bg);
+}
+
+/* Unidades e Menu Superior (D3: Ajuste Responsivo em 375px) */
+.units-nav {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.75rem 1rem;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  max-width: 100%;
+  scrollbar-width: thin;
+}
+
+.unit-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.unit-tab:hover {
+  color: var(--primary);
+  background: var(--accent-bg);
+}
+
+.unit-tab.active {
+  background: var(--primary);
+  color: white;
+}
+
+.unit-tab.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Container Principal */
+.main-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Layout de Comparação Lado a Lado (D2: Reposicionamento do "O que observar") */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Seletor de Linguagens */
+.lang-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.lang-btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  transition: all 0.2s;
+}
+
+.lang-btn.active {
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+  background: var(--accent-bg);
+}
+
+/* Painel de Código com Highlight Sintático (D1) */
+.code-box {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  border-radius: 10px;
+  padding: 1.25rem;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Classes de Sintaxe */
+.syn-kw { color: var(--syn-kw); font-weight: bold; }
+.syn-fn { color: var(--syn-fn); }
+.syn-str { color: var(--syn-str); }
+.syn-num { color: var(--syn-num); }
+.syn-cm { color: var(--syn-cm); font-style: italic; }
+.syn-diff {
+  background-color: var(--diff-highlight);
+  border-left: 3px solid var(--primary);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* Caixa "O que observar" Lado a Lado (D2) */
+.observation-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  padding: 1.25rem;
+  height: fit-content;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.observation-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.observation-list {
+  padding-left: 1.2rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.observation-list li {
+  margin-bottom: 0.6rem;
+}
+
+/* Seção de Quiz Interativo */
+.quiz-section {
+  margin-top: 2.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.question-card {
+  margin-top: 1rem;
+}
+
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.option-btn {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.option-btn:hover {
+  border-color: var(--primary);
+  background: var(--accent-bg);
+}
+
+.option-btn.correct {
+  background: #dcfce7;
+  border-color: var(--success);
+  color: #15803d;
+  font-weight: 600;
+}
+
+.option-btn.wrong {
+  background: #fee2e2;
+  border-color: var(--error);
+  color: #b91c1c;
+}
+
+.feedback-msg {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  display: none;
+}
+
+.feedback-msg.show {
+  display: block;
+}
+
+.feedback-msg.success {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.feedback-msg.error {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Ajustes Específicos para Telas de 375px (D3) */
+@media (max-width: 420px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .units-nav {
+    padding: 0.5rem;
+  }
+  
+  .unit-tab {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.82rem;
+  }
+  
+  .main-container {
+    padding: 0 0.5rem;
+    margin: 1rem auto;
+  }
+  
+  .code-box {
+    font-size: 0.85rem;
+    padding: 0.85rem;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "typeoff-v2",
+  "version": "2.0.0",
+  "description": "Software Educacional de Comparação de Linguagens de Programação - Versão 2.0 Corrigida",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "author": "Emanuele Souza da Silva",
+  "license": "MIT"
+}
